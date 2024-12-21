@@ -1,14 +1,14 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import PriceChart from '@/components/PriceChart.tsx';
-import { dbClient } from '@/lib/db';
+import { connection } from '@/lib/db';
 import { ObjectId } from 'mongodb';
 
-const db = await dbClient();
-const products = db.collection('products');
+const db = await connection();
+const collection = db.collection('products');
 
 const { id } = Astro.params;
-const product = await products.findOne({ _id: new ObjectId(id) });
+const product = await collection.findOne({ _id: new ObjectId(id) });
 ---
 
 <Layout>
