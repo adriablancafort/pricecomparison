@@ -10,7 +10,7 @@ const mongo_uri = `mongodb://${mongo_user}:${mongo_password}@${mongo_ip}:${mongo
 
 const client = new MongoClient(mongo_uri);
 
-export async function dbClient() {
+export async function connection() {
     await client.connect();
     return client.db(mongo_db_name);
 }
