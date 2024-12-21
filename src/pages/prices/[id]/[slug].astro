@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { dbClient } from '@/lib/db';
+import { ObjectId } from 'mongodb';
+
+const db = await dbClient();
+const products = db.collection('products');
+
+const { id } = Astro.params;
+const product = await products.findOne({ _id: new ObjectId(id) });
+---
+
+<Layout>
+  <h1 class="font-medium text-3xl font-cabinet-grotesk">{product.title}</h1>
+  <p>{product.description}</p>
+</Layout>

@@ -1,0 +1,29 @@
+---
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+
+const { product } = Astro.props;
+---
+
+<li key={product._id}>
+    <a href={`/prices/${product._id}/product-slug`}>
+        <Card>
+            <CardHeader>
+                <CardTitle className="font-cabinet-grotesk">{product.title}</CardTitle>
+                <CardDescription>{product.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+                <p>Card Footer</p>
+            </CardFooter>
+        </Card>
+    </a>
+</li>

@@ -1,9 +1,21 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { Button } from "@/components/ui/button"
+import { dbClient } from '@/lib/db';
+import ProductCard from '@/components/ProductCard.astro';
+
+const db = await dbClient();
+const collection = db.collection('products');
+
+const products = await collection.find().toArray();
 ---
 
 <Layout>
 	<h1>Price Comparison</h1>
 	<Button>Hello World</Button>
+	<ul>
+		{products.map(product => (
+			<ProductCard product={product} />
+		))}
+	</ul>
 </Layout>
