@@ -1,0 +1,21 @@
+---
+import { connection } from '@/lib/db';
+import { ObjectId } from 'mongodb';
+
+const db = await connection();
+const collection = db.collection('products');
+
+const { id } = Astro.params;
+const product = await collection.findOne(
+  { _id: new ObjectId(id) },
+  { projection: { slug: 1 } }
+);
+
+if (product) {
+  return Astro.redirect(`/prices/${id}/${product.slug}`);
+}
+
+return {
+  notFound: true
+};
+---
