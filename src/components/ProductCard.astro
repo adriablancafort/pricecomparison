@@ -1,29 +1,32 @@
 ---
 import {
     Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Heart } from 'lucide-react';
 
 const { product } = Astro.props;
 ---
 
-<li key={product._id}>
+<Card>
+  <CardHeader className="space-y-4">
+    <div class="flex justify-between items-center">
+      <Badge className="rounded-full">-{product.discount}%</Badge>
+      <Button variant="outline" className="rounded-full h-7 w-7 p-0">
+        <Heart className="h-4" />
+      </Button>
+    </div>
     <a href={`/prices/${product._id}/${product.slug}`}>
-        <Card>
-            <CardHeader>
-                <CardTitle className="font-cabinet-grotesk">{product.title}</CardTitle>
-                <CardDescription>{product.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-                <p>Card Footer</p>
-            </CardFooter>
-        </Card>
+      <img src={product.image} alt={product.title} class="hover:scale-[102%] transition" />
     </a>
-</li>
+    <div>
+      <a href={`/prices/${product._id}/${product.slug}`}>
+        <CardTitle className="text-xl font-cabinet-grotesk hover:underline decoration-2">{product.title}</CardTitle>
+      </a>
+      <span class="text-2xl">{product.price}€</span>
+    </div>
+  </CardHeader>
+</Card>

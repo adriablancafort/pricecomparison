@@ -1,0 +1,32 @@
+---
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
+const { product } = Astro.props;
+---
+
+<Breadcrumb>
+    <BreadcrumbList>
+        <BreadcrumbItem>
+        <BreadcrumbLink>
+            <a href="/">Home</a>
+        </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+        <BreadcrumbLink>
+            <a href="/category">{product.category}</a>
+        </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+        <BreadcrumbPage>{product.title}</BreadcrumbPage>
+        </BreadcrumbItem>
+    </BreadcrumbList>
+</Breadcrumb>
